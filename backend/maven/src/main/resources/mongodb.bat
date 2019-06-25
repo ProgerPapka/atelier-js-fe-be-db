@@ -1,0 +1,1 @@
+C:\mongodb\bin\mongod.exe --dbpath D:\mongodb\data\db --logpath D:\mongodb\data\log\mongo.log --port 27017 --service

@@ -1,0 +1,56 @@
+#Общий конфиг
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+mail:
+  debug: true
+
+---
+#Конфиг для разработки
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: atelier
+  mail:
+    host: smtp.yandex.ru
+    username: atelier64@yandex.ru
+    password: qwertyqwerty
+    port: 465
+    protocol: smtps
+
+  security:
+    oauth2:
+      client:
+        registration:
+          uaa:
+            client-id:
+  jackson:
+    date-format: dd.MM.yyyy HH:mm:ss
+    time-zone: GMT+4
+
+
+---
+#Конфиг для тестового сервака
+spring:
+  profiles: test
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: atelier
+  mail:
+    host: smtp.yandex.ru
+    username: atelier64@yandex.ru
+    password: qwertyqwerty
+    port: 465
+    protocol: smtps
+  jackson:
+    date-format: dd.MM.yyyy HH:mm:ss
+    time-zone: GMT+4

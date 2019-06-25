@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="test, prod">
+        <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+        <property name="LOG_DIR" value="/opt/back-end/logs" />
+        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+        <!--Полный лог-->
+        <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/info.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="HTML-FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/info.html</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/info.%d{yyyy-MM-dd}.html</fileNamePattern>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <charset>UTF-8</charset>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+                </layout>
+            </encoder>
+        </appender>
+
+        <!--Все ошибки-->
+        <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <file>${LOG_DIR}/error.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="HTML-FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <file>${LOG_DIR}/error.html</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/error.%d{yyyy-MM-dd}.html</fileNamePattern>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <charset>UTF-8</charset>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+                </layout>
+            </encoder>
+        </appender>
+
+        <!--Полный sql-->
+        <appender name="HIBERNATE-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/hibernate.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="HIBERNATE-HTML" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate.html</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/hibernate.%d{yyyy-MM-dd}.html</fileNamePattern>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <charset>UTF-8</charset>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+                </layout>
+            </encoder>
+        </appender>
+
+        <!--Sql ошибки-->
+        <appender name="HIBERNATE-ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate-error.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/hibernate-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="HIBERNATE-ERROR-HTML" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate-error.html</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/hibernate-error.%d{yyyy-MM-dd}.html</fileNamePattern>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <charset>UTF-8</charset>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+                </layout>
+            </encoder>
+        </appender>
+
+        <!--Http request-->
+        <appender name="HTTP-REQUESTS-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/requests.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/requests.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <appender name="HTTP-REQUESTS-HTML" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/request.html</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/request.%d{yyyy-MM-dd}.html</fileNamePattern>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                <charset>UTF-8</charset>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%d{HH:mm:ss.SSS}%thread%level%logger%line%msg</pattern>
+                </layout>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE-INFO"/>
+            <appender-ref ref="HTML-FILE-INFO"/>
+            <appender-ref ref="FILE-ERROR"/>
+            <appender-ref ref="HTML-FILE-ERROR"/>
+        </root>
+
+        <logger name="org.hibernate" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="HIBERNATE-FILE"/>
+            <appender-ref ref="HIBERNATE-ERROR-FILE"/>
+            <appender-ref ref="HIBERNATE-HTML"/>
+            <appender-ref ref="HIBERNATE-ERROR-HTML"/>
+        </logger>
+
+        <logger name="java.sql" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="HIBERNATE-FILE"/>
+            <appender-ref ref="HIBERNATE-ERROR-FILE"/>
+            <appender-ref ref="HIBERNATE-HTML"/>
+            <appender-ref ref="HIBERNATE-ERROR-HTML"/>
+        </logger>
+
+        <logger name="com.itu.tipvis.config.LoggingFilter" additivity="true" level="DEBUG">
+            <appender-ref ref="HTTP-REQUESTS-FILE"/>
+            <appender-ref ref="HTTP-REQUESTS-HTML"/>
+        </logger>
+
+    </springProfile>
+
+
+    <springProfile name="dev">
+
+        <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+        <property name="LOG_DIR" value="./logs/spring-logback/tipvis/logs" />
+        <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+        <!--Полный лог-->
+        <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/info.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!--Все ошибки-->
+        <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <file>${LOG_DIR}/error.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <fileNamePattern>${LOG_DIR}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+
+        <!--Полный sql-->
+        <appender name="HIBERNATE-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/hibernate.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!--Sql ошибки-->
+        <appender name="HIBERNATE-ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/hibernate-error.log</file>
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>ERROR</level>
+            </filter>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/hibernate-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <!--Http request-->
+        <appender name="HTTP-REQUESTS-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${LOG_DIR}/requests.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- daily rollover -->
+                <fileNamePattern>${LOG_DIR}/requests.%d{yyyy-MM-dd}.log</fileNamePattern>
+            </rollingPolicy>
+            <encoder>
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE-INFO"/>
+            <appender-ref ref="FILE-ERROR"/>
+        </root>
+
+        <logger name="org.hibernate" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="HIBERNATE-FILE"/>
+            <appender-ref ref="HIBERNATE-ERROR-FILE"/>
+        </logger>
+
+        <logger name="java.sql" level="INFO" additivity="false">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="HIBERNATE-FILE"/>
+            <appender-ref ref="HIBERNATE-ERROR-FILE"/>
+        </logger>
+
+        <logger name="com.itu.tipvis.config.LoggingFilter" additivity="true" level="DEBUG">
+            <appender-ref ref="HTTP-REQUESTS-FILE"/>
+        </logger>
+
+    </springProfile>
+
+</configuration>
