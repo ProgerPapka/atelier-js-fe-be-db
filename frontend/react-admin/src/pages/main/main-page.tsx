@@ -1,3 +1,4 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-export const MainPage = () => (<div>Main</div>);
+export const MainPage = () => (<Link to="/test">Test</Link>);
