@@ -1,4 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Box from '@material-ui/core/Box';
+import CardMedia from '@material-ui/core/CardMedia';
 
-export const LoginPage = () => (<Link to="/main">Login</Link>);
+import './index.scss';
+
+export const LoginPage = () => (
+  <div>
+    <CssBaseline />
+    <Box display="flex">
+      <Box width={300} height="100vh" style={{ background: 'black' }} />
+      <Box height="100vh">
+        <CardMedia image="../assets/modulmaster-black.jpg" title="Atelier" />
+      </Box>
+    </Box>
+  </div>
+);

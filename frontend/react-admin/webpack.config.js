@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   // webpack will take the files from ./src/index
   entry: './src/index',
@@ -14,7 +15,7 @@ module.exports = {
   },
   module: {
     rules: [
-        // we use babel-loader to load our jsx and tsx files
+      // we use babel-loader to load our jsx and tsx files
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
@@ -24,15 +25,25 @@ module.exports = {
       },
       // css-loader to bundle all the css files into one file and style-loader to add all the styles  inside the style tag of the document
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.scss$/,
+        use: [
+          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader', // translates CSS into CommonJS
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
+        ]
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+  })
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
