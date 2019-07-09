@@ -10,7 +10,43 @@
         //обязательное использование точки с запятой 
         "semicolon": [true],
         "trailing-comma": [false],
-        "no-console": [false]
+        "no-console": [false],
+        "no-empty": true,
+        "no-invalid-template-strings": true,
+        "whitespace": [
+            true, 
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type",
+            "check-typecast",
+            "check-rest-spread",
+            "check-type-operator",
+            "check-preblock",
+            "check-module"
+        ],
+        "no-any": true,
+        "ban-ts-ignore": true,
+        "no-empty-interface": true,
+        "no-var-keyword": true,
+        "deprecation": true,
+        "max-classes-per-file": [true, 1],
+        "no-require-imports": true,
+        "prefer-const": true,
+        "encoding": true,
+        "eofline": true,
+        "align": [
+            true,
+            "arguments",
+            "elements",
+            "members",
+            "parameters",
+            "statements"
+        ],
+        "max-line-length": [true, 120],
+        "linebreak-style": [true, "LF"],
+        "arrow-return-shorthand": [true, "multiline"]
     },
     "rulesDirectory": []
 }
