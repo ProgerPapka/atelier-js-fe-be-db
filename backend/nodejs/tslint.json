@@ -5,9 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        //использовать одинарные кавычки для строковых констант
         "quotemark": [true, "single"],
-        //обязательное использование точки с запятой 
         "semicolon": [true],
         "trailing-comma": [false],
         "no-console": [false],
@@ -27,6 +25,7 @@
             "check-module"
         ],
         "no-any": true,
+        "no-unused-expression": false,
         "ban-ts-ignore": true,
         "no-empty-interface": true,
         "no-var-keyword": true,
