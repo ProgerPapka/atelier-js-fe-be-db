@@ -1,7 +1,7 @@
+import { Basket } from './basket';
 import { IIdentity } from './identity';
 
 export interface IUser extends IIdentity {
-  id: number;
   name: string;
   surname: string;
   middlename?: string;
@@ -18,6 +18,7 @@ export class User implements IUser {
   public phone: string;
   public email: string;
   public password: string;
+  public basket: Basket;
 
   constructor({id, name, surname, middlename, phone, email, password}: IUser) {
     this.id = id;
@@ -27,6 +28,7 @@ export class User implements IUser {
     this.phone = phone;
     this.email = email;
     this.password = password;
+    this.basket = new Basket({id});
   }
 
 }

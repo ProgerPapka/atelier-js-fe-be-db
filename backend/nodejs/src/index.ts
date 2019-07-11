@@ -11,16 +11,19 @@ const schema = buildSchema(`
 `);
 
 const root = {
-    blogTitle: () => ('scotch.io'),
-    postTitle: () => ('Build a Simple GraphQL Server With Express and NodeJS')
+  blogTitle: () => 'scotch.io',
+  postTitle: () => 'Build a Simple GraphQL Server With Express and NodeJS'
 };
 
 const app = express();
-app.use('/', graphqlHTTP({
+app.use(
+  '/',
+  graphqlHTTP({
     graphiql: true,
     rootValue: root,
     schema
-}));
+  })
+);
 
 app.listen(port);
 console.log('GraphQL API server running at localhost: ' + port);

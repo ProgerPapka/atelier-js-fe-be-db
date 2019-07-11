@@ -45,7 +45,8 @@
         ],
         "max-line-length": [true, 120],
         "linebreak-style": [true, "LF"],
-        "arrow-return-shorthand": [true, "multiline"]
+        "arrow-return-shorthand": [true, "multiline"],
+        "array-type": [true, "generic"]
     },
     "rulesDirectory": []
 }
