@@ -46,7 +46,9 @@
         "max-line-length": [true, 120],
         "linebreak-style": [true, "LF"],
         "arrow-return-shorthand": [true, "multiline"],
-        "array-type": [true, "generic"]
+        "array-type": [true, "generic"],
+        "object-literal-sort-keys": false,
+        "ordered-imports": false
     },
     "rulesDirectory": []
 }
