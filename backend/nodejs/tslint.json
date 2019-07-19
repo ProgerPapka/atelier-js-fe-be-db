@@ -24,7 +24,7 @@
             "check-preblock",
             "check-module"
         ],
-        "no-any": true,
+        "no-any": false,
         "no-unused-expression": false,
         "ban-ts-ignore": true,
         "no-empty-interface": true,

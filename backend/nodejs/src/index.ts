@@ -1,9 +1,12 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import { Schema } from './graphql';
+import {DbConnection} from './data/connection';
+
 const port = 3000;
 
 const app = express();
+DbConnection.connect();
 app.use(
   '/',
   graphqlHTTP({
