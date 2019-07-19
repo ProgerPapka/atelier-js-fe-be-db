@@ -1,7 +1,7 @@
 import { BasketType } from './basket';
 import { GraphQLObjectType, GraphQLID, GraphQLString } from 'graphql';
 
-export const UserGraphqlType = new GraphQLObjectType({
+export const UserType = new GraphQLObjectType({
     name: 'user',
     fields: {
         id: {type: GraphQLID},

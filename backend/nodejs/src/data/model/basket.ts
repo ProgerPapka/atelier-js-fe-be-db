@@ -1,20 +1,17 @@
-import { IBasket } from './basket';
-import { IIdentity } from './identity';
-import { Item } from './item';
+import { Document, Schema, model } from 'mongoose';
 
-export interface IBasket extends IIdentity {
+export interface IBasket extends Document {
     price: number;
-    items: Array<Item>;
+    items: Array<Schema.Types.ObjectId>;
 }
 
-export class Basket implements IBasket {
-    public id: number;
-    public price: number;
-    public items: Array<Item>;
+export const BasketSchema = new Schema({
+    price: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    items: [Schema.Types.ObjectId]
+});
 
-    constructor({id}: IIdentity) {
-        this.id = id;
-        this.price = 0;
-        this.items = new Array<Item>();
-    }
-}
+export default model<IBasket>('Basket', BasketSchema);

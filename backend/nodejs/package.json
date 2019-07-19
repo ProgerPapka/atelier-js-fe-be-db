@@ -10,7 +10,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node .",
-    "start:ts": "ts-node .",
+    "start:ts": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,13 +19,15 @@
     "express": "^4.17.1",
     "express-graphql": "^0.8.0",
     "graphql": "^14.4.2",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "mongoose": "^5.6.5"
   },
   "devDependencies": {
     "@types/express": "^4.17.0",
     "@types/express-graphql": "^0.8.0",
     "@types/graphql": "^14.2.2",
     "@types/lodash": "^4.14.136",
+    "@types/mongoose": "^5.5.8",
     "@types/node": "^12.6.1",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",

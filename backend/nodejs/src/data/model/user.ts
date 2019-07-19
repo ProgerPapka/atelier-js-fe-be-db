@@ -1,34 +1,41 @@
-import { Basket } from './basket';
-import { IIdentity } from './identity';
+import { Document, Schema, model } from 'mongoose';
 
-export interface IUser extends IIdentity {
+export interface IUser extends Document {
   name: string;
   surname: string;
   middlename?: string;
   phone?: string;
   email: string;
   password: string;
+  basketId: Schema.Types.ObjectId;
 }
 
-export class User implements IUser {
-  public id: number;
-  public name: string;
-  public surname: string;
-  public middlename: string;
-  public phone: string;
-  public email: string;
-  public password: string;
-  public basket: Basket;
+export const UserSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  surname: {
+    type: String,
+    required: true
+  },
+  middlename: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: false
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  basketId: Schema.Types.ObjectId
+});
 
-  constructor({id, name, surname, middlename, phone, email, password}: IUser) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.middlename = middlename;
-    this.phone = phone;
-    this.email = email;
-    this.password = password;
-    this.basket = new Basket({id});
-  }
-
-}
+export default model<IUser>('User', UserSchema);

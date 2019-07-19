@@ -1,12 +1,19 @@
-import { IIdentity } from './identity';
+import { Document, Schema, model } from 'mongoose';
 
-export interface IItem extends IIdentity {
+export interface IItem extends Document {
   name: string;
   description?: string;
 }
 
-export class Item implements IItem {
-  public id: number;
-  public name: string;
-  public description?: string;
-}
+export const ItemSchema: Schema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: false
+  }
+});
+
+export default model<IItem>('Item', ItemSchema);
