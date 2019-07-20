@@ -7,7 +7,11 @@ export interface IUser extends Document {
   phone?: string;
   email: string;
   password: string;
-  basketId: Schema.Types.ObjectId;
+  userRole: Schema.Types.ObjectId;
+  userAddress: Schema.Types.ObjectId;
+  favorite: Schema.Types.ObjectId;
+  basket: Schema.Types.ObjectId;
+  avatar: Schema.Types.ObjectId;
 }
 
 export const UserSchema = new Schema({
@@ -35,7 +39,11 @@ export const UserSchema = new Schema({
     type: String,
     required: true
   },
-  basketId: Schema.Types.ObjectId
+  userRole: Schema.Types.ObjectId,
+  userAddress: Schema.Types.ObjectId,
+  favorite: Schema.Types.ObjectId,
+  basket: Schema.Types.ObjectId,
+  avatar: Schema.Types.ObjectId
 });
 
 export default model<IUser>('User', UserSchema);

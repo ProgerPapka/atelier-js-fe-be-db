@@ -18,7 +18,7 @@ describe('util: get-safe', () => {
     });
 
     it('get value with error default value', () => {
-        const calculatedVal = getSafe(() => {throw new Error()}, {test: 1});
+        const calculatedVal = getSafe(() => { throw new Error(); }, { test: 1 });
         expect(calculatedVal).toEqual({test: 1});
     });
 });

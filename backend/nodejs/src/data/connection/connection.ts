@@ -9,17 +9,16 @@ const getUrlConnection = () => {
 
 class MongooseConnection {
 
-    public connect() {
-        connect(connectionConfig.url, {
-            user: connectionConfig.login,
-            pass: connectionConfig.password
-        })
-            .then(() => {
-                console.log('Database connection successful');
-            })
-            .catch((error) => {
-                console.error(`Database connection error: ${error}`);
+    public async connect() {
+        try {
+            await connect(connectionConfig.url, {
+                user: connectionConfig.login,
+                pass: connectionConfig.password
             });
+            console.log('Database connection successful');
+        } catch (error) {
+            console.error(`Database connection error: ${error}`);
+        }
     }
 
 }
