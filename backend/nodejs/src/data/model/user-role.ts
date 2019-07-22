@@ -8,7 +8,8 @@ export interface IUserRole extends Document {
 export const UserRoleSchema = new Schema({
     role: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     description: {
         type: String
