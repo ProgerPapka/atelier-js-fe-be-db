@@ -22,8 +22,8 @@ class SeasonRepository implements ISeasonRepository {
         return Season.find();
     }
 
-    public save(season: ISeason): Promise<ISeason> {
-        return new Season(season).save();
+    public save(season: {name: string, description: string}): Promise<ISeason> {
+        return new Season({name: season.name, description: season.description}).save();
     }
 
     public remove(id: Schema.Types.ObjectId): DocumentQuery<ISeason, ISeason> {
