@@ -1,19 +1,20 @@
+import { IBasketDocument } from './../model/basket';
 import { IBasicReadableRepository } from './basic/basic-readable-repository';
 import { IBasicModifiableRepository } from './basic/basic-modifiable-repository';
 import { Schema, DocumentQuery } from 'mongoose';
 import Basket, { IBasket } from '../model/basket';
 
-interface IBasketRepository extends IBasicReadableRepository<IBasket>,
-                                          IBasicModifiableRepository<IBasket> {
+interface IBasketRepository extends IBasicReadableRepository<IBasket, IBasketDocument>,
+                                          IBasicModifiableRepository<IBasket, IBasketDocument> {
 }
 
 class BasketRepository implements IBasketRepository {
 
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<IBasket, IBasket> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<IBasket, IBasketDocument> {
         return Basket.findById(id);
     }
 
-    public findAll(): DocumentQuery<Array<IBasket>, IBasket> {
+    public findAll(): DocumentQuery<Array<IBasket>, IBasketDocument> {
         return Basket.find();
     }
 
@@ -21,7 +22,7 @@ class BasketRepository implements IBasketRepository {
         return new Basket(basket).save();
     }
 
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<IBasket, IBasket>  {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<IBasket, IBasketDocument>  {
         return Basket.findByIdAndDelete(id);
     }
 }

@@ -1,8 +1,11 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface ISeason extends Document {
+export interface ISeason {
     name: string;
     description?: string;
+}
+
+export interface ISeasonDocument extends ISeason, Document {
 }
 
 export const SeasonSchema = new Schema({
@@ -15,4 +18,4 @@ export const SeasonSchema = new Schema({
     }
 });
 
-export default model<ISeason>('Season', SeasonSchema);
+export default model<ISeasonDocument>('Season', SeasonSchema);

@@ -6,10 +6,6 @@ import { seasonMutations } from './season/season-mutations';
 export const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        createUser: {
-            type: UserType,
-            args: {id: {type: GraphQLInt}}
-        },
         ...seasonMutations
     }
 });

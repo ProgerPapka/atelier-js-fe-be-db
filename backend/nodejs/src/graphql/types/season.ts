@@ -1,5 +1,4 @@
 import { GraphQLID, GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
-import { ItemType } from './item';
 
 export const SeasonType = new GraphQLObjectType({
     name: 'season',

@@ -2,10 +2,13 @@ import { Document, Schema, model } from 'mongoose';
 import { link } from 'fs';
 import { Stream } from 'stream';
 
-export interface IFile extends Document {
+export interface IFile {
     name: string;
     link?: string;
     bytes?: ArrayBuffer;
+}
+
+export interface IFileDocument extends IFile, Document {
 }
 
 export const FileSchema = new Schema({
@@ -21,4 +24,4 @@ export const FileSchema = new Schema({
     }
 });
 
-export default model<IFile>('File', FileSchema);
+export default model<IFileDocument>('File', FileSchema);

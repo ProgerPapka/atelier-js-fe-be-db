@@ -1,8 +1,11 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface IItemCategory extends Document {
+export interface IItemCategory {
     name: string;
     description?: string;
+}
+
+export interface IItemCategoryDocument extends IItemCategory, Document {
 }
 
 export const ItemCategorySchema = new Schema({
@@ -15,4 +18,4 @@ export const ItemCategorySchema = new Schema({
     }
 });
 
-export default model<IItemCategory>('ItemCategory', ItemCategorySchema);
+export default model<IItemCategoryDocument>('ItemCategory', ItemCategorySchema);

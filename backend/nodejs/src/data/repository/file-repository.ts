@@ -1,24 +1,25 @@
+import { IFileDocument } from './../model/file';
 import { IBasicReadableRepository } from './basic/basic-readable-repository';
 import { IBasicModifiableRepository } from './basic/basic-modifiable-repository';
 import { Schema, DocumentQuery } from 'mongoose';
 import File, { IFile } from '../model/file';
 
-interface IFileRepository extends IBasicReadableRepository<IFile>,
-                                          IBasicModifiableRepository<IFile> {
-    findByName: (name: string) =>  DocumentQuery<Array<IFile>, IFile> ;
+interface IFileRepository extends IBasicReadableRepository<IFile, IFileDocument>,
+                                          IBasicModifiableRepository<IFile, IFileDocument> {
+    findByName: (name: string) =>  DocumentQuery<Array<IFile>, IFileDocument> ;
 }
 
 class FileRepository implements IFileRepository {
 
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<IFile, IFile> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<IFile, IFileDocument> {
         return File.findById(id);
     }
 
-    public findByName(name: string): DocumentQuery<Array<IFile>, IFile>  {
+    public findByName(name: string): DocumentQuery<Array<IFile>, IFileDocument>  {
         return File.find({name});
     }
 
-    public findAll(): DocumentQuery<Array<IFile>, IFile> {
+    public findAll(): DocumentQuery<Array<IFile>, IFileDocument> {
         return File.find();
     }
 
@@ -26,7 +27,7 @@ class FileRepository implements IFileRepository {
         return new File(file).save();
     }
 
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<IFile, IFile> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<IFile, IFileDocument> {
         return File.findByIdAndDelete(id);
     }
 }

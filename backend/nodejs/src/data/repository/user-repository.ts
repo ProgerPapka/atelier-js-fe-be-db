@@ -1,24 +1,25 @@
+import { IUserDocument } from './../model/user';
 import { IBasicReadableRepository } from './basic/basic-readable-repository';
 import { IBasicModifiableRepository } from './basic/basic-modifiable-repository';
 import { Schema, DocumentQuery } from 'mongoose';
 import User, { IUser } from '../model/user';
 
-interface IUserRepository extends IBasicReadableRepository<IUser>,
-                                          IBasicModifiableRepository<IUser> {
-    findByName: (name: string) => DocumentQuery<Array<IUser>, IUser>;
+interface IUserRepository extends IBasicReadableRepository<IUser, IUserDocument>,
+                                          IBasicModifiableRepository<IUser, IUserDocument> {
+    findByName: (name: string) => DocumentQuery<Array<IUser>, IUserDocument>;
 }
 
 class UserRepository implements IUserRepository {
 
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<IUser, IUser> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<IUser, IUserDocument> {
         return User.findById(id);
     }
 
-    public findByName(name: string): DocumentQuery<Array<IUser>, IUser> {
+    public findByName(name: string): DocumentQuery<Array<IUser>, IUserDocument> {
         return User.find({name});
     }
 
-    public findAll(): DocumentQuery<Array<IUser>, IUser> {
+    public findAll(): DocumentQuery<Array<IUser>, IUserDocument> {
         return User.find();
     }
 
@@ -26,7 +27,7 @@ class UserRepository implements IUserRepository {
         return new User(user).save();
     }
 
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<IUser, IUser> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<IUser, IUserDocument> {
         return User.findByIdAndDelete(id);
     }
 }

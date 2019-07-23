@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface IUserAddress extends Document {
+export interface IUserAddress {
     region: string;
     city: string;
     street: string;
@@ -8,6 +8,9 @@ export interface IUserAddress extends Document {
     floor?: string;
     flat?: string;
     description?: string;
+}
+
+export interface IUserAddressDocument extends IUserAddress, Document {
 }
 
 export const UserAddressSchema = new Schema({
@@ -38,4 +41,4 @@ export const UserAddressSchema = new Schema({
     }
 });
 
-export default model<IUserAddress>('UserAddress', UserAddressSchema);
+export default model<IUserAddressDocument>('UserAddress', UserAddressSchema);

@@ -1,8 +1,11 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface IUserRole extends Document {
+export interface IUserRole {
     role: string;
     description?: string;
+}
+
+export interface IUserRoleDocument extends IUserRole, Document {
 }
 
 export const UserRoleSchema = new Schema({
@@ -16,4 +19,4 @@ export const UserRoleSchema = new Schema({
     }
 });
 
-export default model<IUserRole>('UserRole', UserRoleSchema);
+export default model<IUserRoleDocument>('UserRole', UserRoleSchema);

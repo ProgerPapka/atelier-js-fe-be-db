@@ -1,6 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface IUser extends Document {
+export interface IUser {
   name: string;
   surname: string;
   middlename?: string;
@@ -12,6 +12,9 @@ export interface IUser extends Document {
   favorite: Schema.Types.ObjectId;
   basket: Schema.Types.ObjectId;
   avatar: Schema.Types.ObjectId;
+}
+
+export interface IUserDocument extends IUser, Document {
 }
 
 export const UserSchema = new Schema({
@@ -46,4 +49,4 @@ export const UserSchema = new Schema({
   avatar: Schema.Types.ObjectId
 });
 
-export default model<IUser>('User', UserSchema);
+export default model<IUserDocument>('User', UserSchema);

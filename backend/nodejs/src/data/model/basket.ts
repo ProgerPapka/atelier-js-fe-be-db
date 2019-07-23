@@ -1,8 +1,11 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface IBasket extends Document {
+export interface IBasket {
     price: number;
     items: Array<Schema.Types.ObjectId>;
+}
+
+export interface IBasketDocument extends IBasket, Document {
 }
 
 export const BasketSchema = new Schema({
@@ -14,4 +17,4 @@ export const BasketSchema = new Schema({
     items: [Schema.Types.ObjectId]
 });
 
-export default model<IBasket>('Basket', BasketSchema);
+export default model<IBasketDocument>('Basket', BasketSchema);

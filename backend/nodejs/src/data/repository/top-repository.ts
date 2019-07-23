@@ -1,19 +1,20 @@
+import { ITopDocument } from './../model/top';
 import { IBasicReadableRepository } from './basic/basic-readable-repository';
 import { IBasicModifiableRepository } from './basic/basic-modifiable-repository';
 import { Schema, DocumentQuery } from 'mongoose';
 import Top, { ITop } from '../model/top';
 
-interface ITopRepository extends IBasicReadableRepository<ITop>,
-                                          IBasicModifiableRepository<ITop> {
+interface ITopRepository extends IBasicReadableRepository<ITop, ITopDocument>,
+                                          IBasicModifiableRepository<ITop, ITopDocument> {
 }
 
 class TopRepository implements ITopRepository {
 
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<ITop, ITop> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<ITop, ITopDocument> {
         return Top.findById(id);
     }
 
-    public findAll(): DocumentQuery<Array<ITop>, ITop> {
+    public findAll(): DocumentQuery<Array<ITop>, ITopDocument> {
         return Top.find();
     }
 
@@ -21,7 +22,7 @@ class TopRepository implements ITopRepository {
         return new Top(top).save();
     }
 
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<ITop, ITop> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<ITop, ITopDocument> {
         return Top.findByIdAndDelete(id);
     }
 }

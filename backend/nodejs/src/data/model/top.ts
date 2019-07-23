@@ -1,6 +1,12 @@
 import { Document, Schema, model } from 'mongoose';
 
-export interface ITop extends Document {
+export interface ITop {
+    value: number;
+    item: Schema.Types.ObjectId;
+    user: Schema.Types.ObjectId;
+}
+
+export interface ITopDocument extends ITop, Document {
     value: number;
     item: Schema.Types.ObjectId;
     user: Schema.Types.ObjectId;
@@ -15,4 +21,4 @@ export const TopSchema = new Schema({
     user: Schema.Types.ObjectId
 });
 
-export default model<ITop>('Top', TopSchema);
+export default model<ITopDocument>('Top', TopSchema);

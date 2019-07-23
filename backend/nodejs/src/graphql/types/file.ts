@@ -1,8 +1,7 @@
 import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql';
-import { ItemType } from './item';
 
-export const BasketType = new GraphQLObjectType({
-    name: 'basket',
+export const FileType = new GraphQLObjectType({
+    name: 'file',
     fields: {
         id: {type: GraphQLID},
         name: {type: GraphQLString},
