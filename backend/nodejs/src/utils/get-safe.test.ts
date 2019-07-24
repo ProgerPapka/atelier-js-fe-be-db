@@ -17,6 +17,11 @@ describe('util: get-safe', () => {
         expect(calculatedVal).toBeUndefined();
     });
 
+    it('get value with undefined and default props', () => {
+        const calculatedVal = getSafe(() => undefined, 1);
+        expect(calculatedVal).toBe(1);
+    });
+
     it('get value with error default value', () => {
         const calculatedVal = getSafe(() => { throw new Error(); }, { test: 1 });
         expect(calculatedVal).toEqual({test: 1});
