@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } from 'graphql';
+import { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 import { UserType } from './user';
 import { ItemType } from './item';
 

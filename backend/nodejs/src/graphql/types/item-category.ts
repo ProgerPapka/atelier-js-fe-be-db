@@ -1,7 +1,7 @@
 import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const ItemCategoryType = new GraphQLObjectType({
-    name: 'item-category',
+    name: 'itemCategory',
     fields: {
         id: {type: GraphQLID},
         name: {type: GraphQLString},

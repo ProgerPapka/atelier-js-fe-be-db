@@ -48,7 +48,8 @@
         "arrow-return-shorthand": [true, "multiline"],
         "array-type": [true, "generic"],
         "object-literal-sort-keys": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "no-shadowed-variable": false
     },
     "rulesDirectory": []
 }

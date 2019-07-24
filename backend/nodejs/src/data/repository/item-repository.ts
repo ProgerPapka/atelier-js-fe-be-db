@@ -19,6 +19,18 @@ class ItemRepository implements IItemRepository {
         return Item.find({name});
     }
 
+    public findByCategory(category: Schema.Types.ObjectId): DocumentQuery<Array<IItem>, IItemDocument> {
+        return Item.find({itemCategory: category});
+    }
+
+    public findByType(type: Schema.Types.ObjectId): DocumentQuery<Array<IItem>, IItemDocument> {
+        return Item.find({itemType: type});
+    }
+
+    public findBySeason(season: Schema.Types.ObjectId): DocumentQuery<Array<IItem>, IItemDocument> {
+        return Item.find({season});
+    }
+
     public findAll(): DocumentQuery<Array<IItem>, IItemDocument> {
         return Item.find();
     }

@@ -1,8 +1,8 @@
-import { GraphQLID, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } from 'graphql';
+import { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql';
 import { ItemType } from './item';
 
 export const UserAddressType = new GraphQLObjectType({
-    name: 'user-address',
+    name: 'userAddress',
     fields: {
         id: {type: GraphQLID},
         region: {type: GraphQLString},
