@@ -1,16 +1,16 @@
 import { IQueryFields } from '../../types/basic/query-fields';
 import { ItemCategoryType } from '../../types/item-category';
 import { GraphQLID, GraphQLList } from 'graphql';
-import itemCagetgoryRepository from '../../../data/repository/item-category-repository';
+import itemCategoryRepository from '../../../data/repository/item-category-repository';
 
-export const itemCagetgoryQueries: IQueryFields = {
-    itemCagetgory: {
+export const itemCategoryQueries: IQueryFields = {
+    itemCategory: {
         type: ItemCategoryType,
         args: {id: {type: GraphQLID}},
-        resolve: (source: any, {id}) => itemCagetgoryRepository.findById(id)
+        resolve: (source: any, {id}) => itemCategoryRepository.findById(id)
     },
-    itemCagetgories: {
+    itemCategories: {
         type: new GraphQLList(ItemCategoryType),
-        resolve: () => itemCagetgoryRepository.findAll()
+        resolve: () => itemCategoryRepository.findAll()
     }
 };

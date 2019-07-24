@@ -3,7 +3,7 @@ import { BasketType } from './../../types/basket';
 import { GraphQLList, GraphQLID } from 'graphql';
 import basketRepository from '../../../data/repository/basket-repository';
 
-export const basketQuyries: IQueryFields = {
+export const basketQueries: IQueryFields = {
     baskets: {
         type: new GraphQLList(BasketType),
         resolve: () => basketRepository.findAll(),

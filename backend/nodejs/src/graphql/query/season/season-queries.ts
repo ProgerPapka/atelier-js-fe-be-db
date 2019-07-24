@@ -3,7 +3,7 @@ import { SeasonType } from './../../types/season';
 import { GraphQLList, GraphQLID } from 'graphql';
 import seasonRepository from '../../../data/repository/season-repository';
 
-export const seasonQuyries: IQueryFields = {
+export const seasonQueries: IQueryFields = {
     seasons: {
         type: new GraphQLList(SeasonType),
         resolve: () => seasonRepository.findAll(),
