@@ -23,7 +23,7 @@ class ItemCategoryRepository implements IItemCategoryRepository {
         return ItemCategory.find();
     }
 
-    public save(itemCategory: IItemCategory): Promise<IItemCategory> {
+    public save(itemCategory: IItemCategory): Promise<IItemCategoryDocument> {
         return new ItemCategory(itemCategory).save();
     }
 

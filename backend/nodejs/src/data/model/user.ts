@@ -10,8 +10,8 @@ export interface IUser {
   userRole: Schema.Types.ObjectId;
   userAddress: Schema.Types.ObjectId;
   avatar: Schema.Types.ObjectId;
-  favorite?: Schema.Types.ObjectId;
-  basket?: Schema.Types.ObjectId;
+  favorite: Schema.Types.ObjectId;
+  basket: Schema.Types.ObjectId;
 }
 
 export interface IUserDocument extends IUser, Document {

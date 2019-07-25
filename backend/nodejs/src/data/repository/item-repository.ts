@@ -35,7 +35,7 @@ class ItemRepository implements IItemRepository {
         return Item.find();
     }
 
-    public save(item: IItem): Promise<IItem> {
+    public save(item: IItem): Promise<IItemDocument> {
         return new Item(item).save();
     }
 

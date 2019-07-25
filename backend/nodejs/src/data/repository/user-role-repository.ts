@@ -23,7 +23,7 @@ class UserRoleRepository implements IUserRoleRepository {
         return UserRole.find();
     }
 
-    public save(userRole: IUserRole): Promise<IUserRole> {
+    public save(userRole: IUserRole): Promise<IUserRoleDocument> {
         return new UserRole(userRole).save();
     }
 

@@ -1,5 +1,5 @@
 import { BasketType } from '../../types/basket';
-import { GraphQLString, GraphQLID } from 'graphql';
+import { GraphQLString, GraphQLID, GraphQLList } from 'graphql';
 import basketRepository from '../../../data/repository/basket-repository';
 import { IMutationFields } from '../../types/basic/mutation-fields';
 
@@ -8,16 +8,18 @@ export const basketMutations: IMutationFields = {
         type: BasketType,
         args: {
             id: {type: GraphQLID},
-            itemId: {type: GraphQLID}
+            itemIds: {type: new GraphQLList(GraphQLID)}
         },
-        resolve: (source: any, {id, itemId}) => null // TODO: implement
+        resolve: (source: any, {id, itemIds}) =>
+            basketRepository.addItems(id, itemIds)
     },
     removeFromBasket: {
         type: BasketType,
         args: {
             id: {type: GraphQLID},
-            itemId: {type: GraphQLID}
+            itemIds: {type: new GraphQLList(GraphQLID)}
         },
-        resolve: (source: any, {id, itemId}) => null // TODO: implement
+        resolve: (source: any, {id, itemIds}) =>
+            basketRepository.removeItems(id, itemIds)
     }
 };

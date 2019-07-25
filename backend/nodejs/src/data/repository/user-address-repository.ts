@@ -18,7 +18,7 @@ class UserAddressRepository implements IUserAddressRepository {
         return UserAddress.find();
     }
 
-    public save(userAddress: IUserAddress): Promise<IUserAddress> {
+    public save(userAddress: IUserAddress): Promise<IUserAddressDocument> {
         return new UserAddress(userAddress).save();
     }
 

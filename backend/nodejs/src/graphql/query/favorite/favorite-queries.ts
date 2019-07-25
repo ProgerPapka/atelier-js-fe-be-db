@@ -1,7 +1,9 @@
+import { map } from 'lodash';
 import { IQueryFields } from '../../types/basic/query-fields';
 import { FavoriteType } from '../../types/favorite';
 import { GraphQLID, GraphQLList } from 'graphql';
 import favoriteRepository from '../../../data/repository/favorite-repository';
+import itemRepository from '../../../data/repository/item-repository';
 
 export const favoriteQueries: IQueryFields = {
     favorite: {
@@ -11,6 +13,13 @@ export const favoriteQueries: IQueryFields = {
     },
     favorites: {
         type: new GraphQLList(FavoriteType),
-        resolve: () => favoriteRepository.findAll() // TODO: implement
+        resolve: (source: any, {id}) =>
+            favoriteRepository.findById(id).then((favorite) => ({
+                items: favorite &&
+                    map(
+                        favorite.items,
+                        (item) => itemRepository.findById(item)
+                    )
+            }))
     }
 };

@@ -23,7 +23,7 @@ class FileRepository implements IFileRepository {
         return File.find();
     }
 
-    public save(file: IFile): Promise<IFile> {
+    public save(file: IFile): Promise<IFileDocument> {
         return new File(file).save();
     }
 

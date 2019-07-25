@@ -1,6 +1,8 @@
 import { UserType } from '../../types/user';
 import { GraphQLString, GraphQLID } from 'graphql';
 import userRepository from '../../../data/repository/user-repository';
+import basketRepository from '../../../data/repository/basket-repository';
+import favoriteRepository from '../../../data/repository/favorite-repository';
 import { IMutationFields } from '../../types/basic/mutation-fields';
 
 export const userMutations: IMutationFields = {
@@ -17,7 +19,7 @@ export const userMutations: IMutationFields = {
             userAddress: {type: GraphQLID},
             avatar: {type: GraphQLID}
         },
-        resolve: (source: any, {
+        resolve: async (source: any, {
             name,
             surname,
             middlename,
@@ -27,17 +29,23 @@ export const userMutations: IMutationFields = {
             userRole,
             userAddress,
             avatar
-        }) => userRepository.save({
-            name,
-            surname,
-            middlename,
-            phone,
-            email,
-            password,
-            userRole,
-            userAddress,
-            avatar
-        }) // TODO: implement
+        }) => {
+            const favorite = await favoriteRepository.save({items: []});
+            const basket = await basketRepository.save({price: 0, items: []});
+            return userRepository.save({
+                name,
+                surname,
+                middlename,
+                phone,
+                email,
+                password,
+                userRole,
+                userAddress,
+                avatar,
+                basket: basket._id,
+                favorite: favorite._id
+            });
+        }
     },
     deleteUser: {
         type: UserType,

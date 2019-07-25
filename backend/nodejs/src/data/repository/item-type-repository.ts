@@ -23,7 +23,7 @@ class ItemTypeRepository implements IItemTypeRepository {
         return ItemType.find();
     }
 
-    public save(itemType: IItemType): Promise<IItemType> {
+    public save(itemType: IItemType): Promise<IItemTypeDocument> {
         return new ItemType(itemType).save();
     }
 

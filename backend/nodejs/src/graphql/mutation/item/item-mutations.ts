@@ -19,6 +19,6 @@ export const itemMutations: IMutationFields = {
     deleteItem: {
         type: ItemType,
         args: {id: {type: GraphQLID}},
-        resolve: (source: any, {id}) => itemRepository.remove(id)
+        resolve: (source: any, {id}) => itemRepository.remove(id) // TODO: remove all links
     }
 };

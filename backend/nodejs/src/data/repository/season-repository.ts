@@ -23,7 +23,7 @@ class SeasonRepository implements ISeasonRepository {
         return Season.find();
     }
 
-    public save(season: ISeason): Promise<ISeason> {
+    public save(season: ISeason): Promise<ISeasonDocument> {
         return new Season({name: season.name, description: season.description}).save();
     }
 

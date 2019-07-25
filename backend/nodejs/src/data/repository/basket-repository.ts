@@ -6,6 +6,10 @@ import Basket, { IBasket } from '../model/basket';
 
 interface IBasketRepository extends IBasicReadableRepository<IBasket, IBasketDocument>,
                                           IBasicModifiableRepository<IBasket, IBasketDocument> {
+    addItems: (id: Schema.Types.ObjectId, items: Array<Schema.Types.ObjectId>) =>
+        DocumentQuery<IBasket, IBasketDocument>;
+    removeItems: (id: Schema.Types.ObjectId, items: Array<Schema.Types.ObjectId>) =>
+        DocumentQuery<IBasket, IBasketDocument>;
 }
 
 class BasketRepository implements IBasketRepository {
@@ -18,12 +22,30 @@ class BasketRepository implements IBasketRepository {
         return Basket.find();
     }
 
-    public save(basket: IBasket): Promise<IBasket> {
+    public save(basket: IBasket): Promise<IBasketDocument> {
         return new Basket(basket).save();
     }
 
     public remove(id: Schema.Types.ObjectId): DocumentQuery<IBasket, IBasketDocument>  {
         return Basket.findByIdAndDelete(id);
+    }
+
+    public addItems(id: Schema.Types.ObjectId, items: Array<Schema.Types.ObjectId>):
+        DocumentQuery<IBasket, IBasketDocument> {
+            return Basket.findOneAndUpdate(
+                id,
+                {$push: {items}},
+                {new: true, upsert: true}
+            );
+    }
+
+    public removeItems(id: Schema.Types.ObjectId, items: Array<Schema.Types.ObjectId>):
+        DocumentQuery<IBasket, IBasketDocument> {
+            return Basket.findOneAndUpdate(
+                id,
+                {$pull: {items}},
+                {new: true}
+            );
     }
 }
 

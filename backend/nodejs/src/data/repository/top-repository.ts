@@ -18,7 +18,7 @@ class TopRepository implements ITopRepository {
         return Top.find();
     }
 
-    public save(top: ITop): Promise<ITop> {
+    public save(top: ITop): Promise<ITopDocument> {
         return new Top(top).save();
     }
 

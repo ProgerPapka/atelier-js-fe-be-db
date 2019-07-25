@@ -23,7 +23,7 @@ class UserRepository implements IUserRepository {
         return User.find();
     }
 
-    public save(user: IUser): Promise<IUser> {
+    public save(user: IUser): Promise<IUserDocument> {
         return new User(user).save();
     }
 
