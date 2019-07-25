@@ -1,17 +1,24 @@
+import { map } from 'lodash';
 import { IQueryFields } from './../../types/basic/query-fields';
 import { UserType } from './../../types/user';
 import { GraphQLList, GraphQLID } from 'graphql';
 import userRepository from '../../../data/repository/user-repository';
-import { IUser } from '../../../data/model';
+import { prepareUser } from '../../../data/utils';
 
-export const userQuyries: IQueryFields = {
+export const userQueries: IQueryFields = {
     users: {
         type: new GraphQLList(UserType),
-        resolve: () => userRepository.findAll(), // TODO: implement
+        resolve: async () => {
+            const users = await userRepository.findAll().then();
+            return map(users, (user) => prepareUser(user));
+        }
     },
     user: {
         type: new GraphQLList(UserType),
         args: {id: {type: GraphQLID}},
-        resolve: (source: any, {id}) => userRepository.findById(id), // TODO: implement
+        resolve: async (source: any, {id}) => {
+            const user = await userRepository.findById(id).then();
+            return prepareUser(user);
+        }
     }
 };

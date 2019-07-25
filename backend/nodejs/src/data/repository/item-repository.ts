@@ -7,6 +7,10 @@ import Item, { IItem } from '../model/item';
 interface IItemRepository extends IBasicReadableRepository<IItem, IItemDocument>,
                                           IBasicModifiableRepository<IItem, IItemDocument> {
     findByName: (name: string) => DocumentQuery<Array<IItem>, IItemDocument>;
+    findByLikeName: (name: string) => DocumentQuery<Array<IItem>, IItemDocument>;
+    findByCategory: (category: Schema.Types.ObjectId) => DocumentQuery<Array<IItem>, IItemDocument>;
+    findByType: (type: Schema.Types.ObjectId) => DocumentQuery<Array<IItem>, IItemDocument>;
+    findBySeason: (season: Schema.Types.ObjectId) => DocumentQuery<Array<IItem>, IItemDocument>;
 }
 
 class ItemRepository implements IItemRepository {
@@ -17,6 +21,10 @@ class ItemRepository implements IItemRepository {
 
     public findByName(name: string): DocumentQuery<Array<IItem>, IItemDocument> {
         return Item.find({name});
+    }
+
+    public findByLikeName(name: string): DocumentQuery<Array<IItem>, IItemDocument> {
+        return Item.find({name: new RegExp(`^${name}$`, 'i')});
     }
 
     public findByCategory(category: Schema.Types.ObjectId): DocumentQuery<Array<IItem>, IItemDocument> {

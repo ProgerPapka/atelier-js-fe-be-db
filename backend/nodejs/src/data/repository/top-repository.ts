@@ -14,6 +14,10 @@ class TopRepository implements ITopRepository {
         return Top.findById(id);
     }
 
+    public findByItem(item: Schema.Types.ObjectId): DocumentQuery<Array<ITop>, ITopDocument> {
+        return Top.find({item});
+    }
+
     public findAll(): DocumentQuery<Array<ITop>, ITopDocument> {
         return Top.find();
     }

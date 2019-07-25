@@ -55,6 +55,6 @@ export const itemQueries: IQueryFields = {
         args: {
             name: {type: GraphQLString}
         },
-        resolve: () => null // TODO: implement
+        resolve: () => itemRepository.findByLikeName(name)
     }
 };

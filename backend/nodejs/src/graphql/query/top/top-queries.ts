@@ -18,6 +18,6 @@ export const topQueries: IQueryFields = {
         args: {
             itemId: {type: GraphQLID}
         },
-        resolve: () => null // TODO: implement logic
+        resolve: (source: any, {itemId}) => topRepository.findByItem(itemId)
     }
 };
