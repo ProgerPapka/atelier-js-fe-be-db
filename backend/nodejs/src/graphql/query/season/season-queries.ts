@@ -1,5 +1,5 @@
-import { IQueryFields } from './../../types/basic/query-fields';
-import { SeasonType } from './../../types/season';
+import { IQueryFields } from '../../types/basic/query-fields';
+import { SeasonType } from '../../types/season';
 import { GraphQLList, GraphQLID } from 'graphql';
 import seasonRepository from '../../../data/repository/season-repository';
 

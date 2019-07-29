@@ -14,6 +14,7 @@ import { userQueries } from './user';
 export const Query = new GraphQLObjectType({
     name: 'Query',
     fields: {
+        // TODO: remove all queries 'By'
         ...basketQueries,
         ...favoriteQueries,
         ...fileQueries,

@@ -1,6 +1,6 @@
 import { map } from 'lodash';
-import { IQueryFields } from './../../types/basic/query-fields';
-import { BasketType } from './../../types/basket';
+import { IQueryFields } from '../../types/basic/query-fields';
+import { BasketType } from '../../types/basket';
 import { GraphQLList, GraphQLID } from 'graphql';
 import basketRepository from '../../../data/repository/basket-repository';
 import itemRepository from '../../../data/repository/item-repository';

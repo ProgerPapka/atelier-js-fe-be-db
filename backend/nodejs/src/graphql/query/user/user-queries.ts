@@ -1,6 +1,6 @@
 import { map } from 'lodash';
-import { IQueryFields } from './../../types/basic/query-fields';
-import { UserType } from './../../types/user';
+import { IQueryFields } from '../../types/basic/query-fields';
+import { UserType } from '../../types/user';
 import { GraphQLList, GraphQLID } from 'graphql';
 import userRepository from '../../../data/repository/user-repository';
 import { prepareUser } from '../../../data/utils';

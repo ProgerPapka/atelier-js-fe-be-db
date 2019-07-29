@@ -6,7 +6,7 @@ import { DbConnection } from './data/connection';
 const port = 3000;
 
 const app = express();
-DbConnection.connect();
+const connection = DbConnection.connect();
 app.use(
   '/',
   graphqlHTTP({
